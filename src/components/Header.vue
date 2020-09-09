@@ -1,6 +1,8 @@
 <template>
   <header class="header">
-    <h1 class="logo">Where in the world?</h1>
+    <router-link class="logo" :to="{ name: 'Country'}">
+      <h1 class="logo">Where in the world?</h1>
+    </router-link>
     <img class="moon" :src="require(`@/assets/moon.svg`)" alt="moon" />
     <div class="color-switcher">
       <button class="darkmode-btn">Dark Mode</button>

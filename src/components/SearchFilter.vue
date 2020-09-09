@@ -1,15 +1,21 @@
 <template>
   <section class="search-section">
     <div class="search-wrapper">
-      <input class="search-input" type="text" placeholder="Search for a country..." />
+      <input
+        v-model="search"
+        class="search-input"
+        type="text"
+        placeholder="Search for a country..."
+      />
     </div>
-    <select class="filter" name="region">
+    <select v-model="filter" class="filter" name="region">
       <option value disabled selected hidden>Filter by region</option>
-      <option value="region">Africa</option>
-      <option value="region">America</option>
-      <option value="region">Asia</option>
-      <option value="region">Europe</option>
-      <option value="region">Oceania</option>
+      <option value>All</option>
+      <option value="africa">Africa</option>
+      <option value="america">America</option>
+      <option value="asia">Asia</option>
+      <option value="europe">Europe</option>
+      <option value="oceania">Oceania</option>
     </select>
   </section>
 </template>
@@ -17,6 +23,23 @@
 <script>
 export default {
   name: "SearchFilter",
+  props: {
+    data: Array,
+  },
+  data() {
+    return {
+      search: "",
+      filter: "",
+    };
+  },
+  watch: {
+    search() {
+      this.$emit("search", this.search);
+    },
+    filter() {
+      this.$emit("filter", this.filter);
+    },
+  },
 };
 </script>
 

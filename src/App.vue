@@ -1,22 +1,17 @@
 <template>
   <div id="app">
     <Header />
-    <SearchFilter />
-    <Country />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
-import SearchFilter from "./components/SearchFilter";
-import Country from "./components/Country";
 
 export default {
   name: "App",
   components: {
     Header,
-    SearchFilter,
-    Country,
   },
 };
 </script>
@@ -61,6 +56,11 @@ ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 ol,

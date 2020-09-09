@@ -1,32 +1,44 @@
 <template>
-  <section class="country-section">
-    <div class="country-item" v-for="country in data" :key="country.name">
-      <img class="country-image" :src="country.flag" alt="flag" />
-      <div class="country-stats">
-        <h2 class="country-name">{{ country.name }}</h2>
-        <p>
-          <strong>Population:</strong>
-          {{country.population}}
-        </p>
-        <p>
-          <strong>Region:</strong>
-          {{country.region}}
-        </p>
-        <p>
-          <strong>Capital:</strong>
-          {{country.capital}}
-        </p>
+  <section>
+    <SearchFilter @search="searchName" @filter="searchFilter" :data="data" />
+    <section class="country-section">
+      <div class="country-item" v-for="country in filteredList" :key="country.name">
+        <router-link :to="{ name: 'CountryPage', params: { id: country.name } }">
+          <img class="country-image" :src="country.flag" alt="flag" />
+        </router-link>
+        <div class="country-stats">
+          <h2 class="country-name">{{ country.name }}</h2>
+          <p>
+            <strong>Population:</strong>
+            {{country.population}}
+          </p>
+          <p>
+            <strong>Region:</strong>
+            {{country.region}}
+          </p>
+          <p>
+            <strong>Capital:</strong>
+            {{country.capital}}
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
   </section>
 </template>
 
 <script>
+import SearchFilter from "../components/SearchFilter";
+
 export default {
   name: "Country",
+  components: {
+    SearchFilter,
+  },
   data() {
     return {
-      data: {},
+      data: [],
+      search: "",
+      filter: "",
     };
   },
   beforeMount() {
@@ -37,6 +49,22 @@ export default {
       const res = await fetch("https://restcountries.eu/rest/v2/all");
       const data = await res.json();
       this.data = data;
+    },
+    searchName(value) {
+      this.search = value;
+    },
+    searchFilter(value) {
+      this.filter = value;
+    },
+  },
+  computed: {
+    filteredList() {
+      return this.data.filter((item) => {
+        if (this.search.length >= 1) {
+          return item.name.toLowerCase().includes(this.search.toLowerCase());
+        }
+        return item.region.toLowerCase().includes(this.filter.toLowerCase());
+      });
     },
   },
 };
