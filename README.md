@@ -1,4 +1,4 @@
-# rest-countries-api
+# rest-countries-api - [Live Demo](https://rest-countries-api-vue.netlify.app/)
 
 ## Project setup
 ```
