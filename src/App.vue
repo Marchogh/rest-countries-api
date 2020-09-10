@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <router-view></router-view>
+    <div class="wrapper">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -20,21 +22,27 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 
 :root {
-  --light-bg: hsl(0, 0%, 98%);
-  --dark-bg: hsl(207, 26%, 17%);
-  --dark-blue: hsl(209, 23%, 22%);
-  --light-text: hsl(200, 15%, 8%);
-  --dark-gray: hsl(0, 0%, 52%);
-  --white: hsl(0, 0%, 100%);
+  --background-color: hsl(0, 0%, 98%);
+  --secondary-background: hsl(0, 0%, 100%);
+  --text: hsl(200, 15%, 8%);
+  --subtle-text: hsl(0, 0%, 60%);
   --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+.dark {
+  --background-color: hsl(207, 26%, 17%);
+  --secondary-background: hsl(209, 23%, 22%);
+  --text: hsl(0, 0%, 100%);
+  --subtle-text: hsl(0, 0%, 100%);
+}
+
 html {
   box-sizing: border-box;
-  background: var(--light-bg);
+  background: var(--background-color);
   font-family: "Nunito Sans", sans-serif;
   font-size: 16px;
+  color: var(--text);
 }
 
 *,
@@ -71,5 +79,15 @@ ul {
 img {
   max-width: 100%;
   height: auto;
+}
+
+.wrapper {
+  margin: 0 5rem;
+}
+
+@media screen and (max-width: 750px) {
+  .wrapper {
+    margin: 0 1.5rem;
+  }
 }
 </style>

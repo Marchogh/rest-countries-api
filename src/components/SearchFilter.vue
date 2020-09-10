@@ -46,7 +46,7 @@ export default {
 <style>
 .search-section {
   display: flex;
-  margin: 5rem;
+  margin: 5rem 0;
 }
 
 .search-wrapper {
@@ -59,13 +59,18 @@ export default {
   border-radius: 5px;
   border: none;
   box-shadow: var(--box-shadow);
-  background-color: white;
   width: 30%;
 }
 
 .search-input {
   background: url("~@/assets/search.svg") no-repeat scroll 20px 20px;
   background-size: 17px 17px;
+  background-color: var(--secondary-background);
+  color: var(--text);
+}
+
+.search-input::placeholder {
+  color: var(--subtle-text);
 }
 
 .filter {
@@ -73,6 +78,25 @@ export default {
   font-size: 16px;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
+  background: var(--secondary-background);
+  color: var(--text);
   border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .search-section {
+    margin: 3rem 0;
+    flex-direction: column;
+  }
+  .search-wrapper > input {
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .filter {
+    font-size: 14px;
+    width: 50%;
+  }
 }
 </style>

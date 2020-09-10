@@ -3,24 +3,25 @@
     <SearchFilter @search="searchName" @filter="searchFilter" :data="data" />
     <section class="country-section">
       <div class="country-item" v-for="country in filteredList" :key="country.name">
-        <router-link :to="{ name: 'CountryPage', params: { id: country.name } }">
+        <router-link :to="{ name: 'CountryPage', params: { id: country.name.toLowerCase() } }">
           <img class="country-image" :src="country.flag" alt="flag" />
+
+          <div class="country-stats">
+            <h2 class="country-name">{{ country.name }}</h2>
+            <p>
+              <strong>Population:</strong>
+              {{country.population}}
+            </p>
+            <p>
+              <strong>Region:</strong>
+              {{country.region}}
+            </p>
+            <p>
+              <strong>Capital:</strong>
+              {{country.capital}}
+            </p>
+          </div>
         </router-link>
-        <div class="country-stats">
-          <h2 class="country-name">{{ country.name }}</h2>
-          <p>
-            <strong>Population:</strong>
-            {{country.population}}
-          </p>
-          <p>
-            <strong>Region:</strong>
-            {{country.region}}
-          </p>
-          <p>
-            <strong>Capital:</strong>
-            {{country.capital}}
-          </p>
-        </div>
       </div>
     </section>
   </section>
@@ -72,13 +73,13 @@ export default {
 
 <style>
 .country-section {
-  margin: 2rem 5rem;
+  margin: 2rem 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 5rem;
 }
 .country-item {
-  background: var(--white);
+  background: var(--secondary-background);
   box-shadow: var(--box-shadow);
   border-radius: 10px;
 }
@@ -103,5 +104,19 @@ export default {
 .country-name {
   font-weight: 600;
   margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 750px) {
+  .country-section {
+    display: block;
+  }
+
+  .country-item {
+    margin-bottom: 3rem;
+  }
+
+  .country-image {
+    height: 150px;
+  }
 }
 </style>
