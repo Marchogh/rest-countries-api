@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     async getCountries() {
-      const res = await fetch("https://restcountries.eu/rest/v2/all");
+      const res = await fetch("https://restcountries.eu/rest/v3.1/all");
       const data = await res.json();
       this.data = data;
     },
