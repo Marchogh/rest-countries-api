@@ -48,7 +48,7 @@ export default {
   methods: {
     async getCountry() {
       const res = await fetch(
-        `https://restcountries.eu/rest/v2/name/${this.$route.params.id}`
+        `https://restcountries.eu/rest/v3.1/name/${this.$route.params.id}`
       );
       const data = await res.json();
       this.data = data[0];
